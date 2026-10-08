@@ -59,7 +59,7 @@ async def guard(req: Request):
                 # free tier is for non-commercial use; use a paid plan or another IP-reputation API if commercial
                 r = await c.get(f"http://ip-api.com/json/{ip}?fields=status,proxy,hosting")
                 j = r.json()
-                bad = j.get("status") == "success" and (j.get("proxy") or j.get("hosting"))
+                bad = j.get("status") == "success" and j.get("proxy"))
         except Exception:
             bad = False  # if the check fails, let the visitor through
         hit = _vpn_cache[ip] = (bool(bad), time.time())
